@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Sensor</string>
+    <string name="button_start">Record</string>
+    <string name="button_save">Save</string>
+</resources>
