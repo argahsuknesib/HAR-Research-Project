@@ -1,0 +1,53 @@
+The two survery papers to be read were :
+1. Human Activity Recognition using Inertial, Physiological and Environmental Sensors : A comprehensive review
+2. Indoor Localization and navigation using smartphone's sensory data.
+
+These are the main points, I thought were important to note from these papers.
+Paper 1:
+The paper discusses about the critical role of machine learning in developing the Human Activity Recognition (HAR) based applications.
+The main use cases for an HAR based technology is in healthcare, interactive gaming, sports and various monitoring systems.
+As the number of old people are growing, it is evident that the social cause of HAR is the monitoring of old age people's appliances and
+their assistive systems. There are various challenges faced by HAR, which are
+    1. the complexity and the variety of the daily activities.
+    2. intra-subject and inter-subject variability of the same activity.
+    3. the trade-off between the performance and privacy.
+    4. a computational efficiency in portable devices.
+    5. a difficulty in data annotation.
+
+The data for HAR is recieved by:
+    1. ambient sensors, and
+    2. embedded sensors.
+
+Ambient Sensors : they are the environmental sensors, such as temperature sensors and video cameras positioned in a specific points in the surrounding
+environment.
+Embedded Sensors : they are integrated into the personal devices such as smartphones and smart-watches.
+
+Video footage is widely used in HAR applications but they have many issues regarding privacy and computational requirements.
+HAR research has seen an explosion due to the deep learning methods for providing an increase in accuracy. Meanwhile, some of the HAR applications
+use classic machine learning models fir a better accuracy, in case the size of the dataset is small and has low dimensionality. So there are three
+different models which are being used in this process, which are, 1. Deep Learning Models, 2. Classical Machine Learning Models, and 3. Threshold Models.
+
+The current paper, will only discuss about the non-image based sensors. The workflow of an HAR application is:
+    Human Activity --> Device Identification --> Data Collection(Noise Removal and Feature Extraction) --> Model Selection and Training --> Model Evaluation
+The model evaluation step retraces itself, back to the Human Activity block.
+
+Steps to develop an HAR application:
+Step 1 : Determine the type of sensor and the device being used to collect the data.
+Step 2 : Determine the details of the data collection process.
+Step 3 : Identifying a machine learning model and using it for training.
+Step 4 : This is the final step, the model is evaluated in the terms of an activity recognition metrics such as accuracy, recall and precision.
+
+Accelerometer is a great attraction in the field of HAR research, because it is cheap as well as it produces great results. The most widely used daya sources
+are inertial, physiological and environmental devices and video recording devices. The use of accelerometer is strongly related to their ability to directly measure
+the movement of the human body. In addition, using accelerometer sensors is affordable, and the sensors can be integrated into most wearable devices. Besides, they
+will present the ambient sensor-based HAR, including camera based and the systems combining wearable and ambient sensors. There are research papers studying the
+usage of HAR in healthcare applications such as, EMG, ECG, EOG and others.
+
+Obejective and Background :
+    The main objective is to recognize human activity based upon the data gathered by wearable and environmental sensors. The recognition of these activities were
+    mainly based upon CML and DL algorithms.
+
+Discussion about the classical machine learning and the deep learning models.
+
+Sensors : are very common and useful. connected in, as many forms of sensors in the mobile devices as well as the mobile sensors we may have in a smartwatch. additonal
+useful sensors for this work are the Bluetooth low energy (BLE) and the wireless local area network (WLAN) and GPS sensor.
