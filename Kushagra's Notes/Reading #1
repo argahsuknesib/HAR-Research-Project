@@ -50,4 +50,93 @@ Obejective and Background :
 Discussion about the classical machine learning and the deep learning models.
 
 Sensors : are very common and useful. connected in, as many forms of sensors in the mobile devices as well as the mobile sensors we may have in a smartwatch. additonal
-useful sensors for this work are the Bluetooth low energy (BLE) and the wireless local area network (WLAN) and GPS sensor.
+useful sensors for this work are the Bluetooth low energy (BLE) and the wireless local area network (WLAN) and GPS sensor, they are the other type of data collection and sensing
+systems with communication capabilities, to be added into the Internet of Things (IoT).
+
+Sensor Fusion Techniques : each sensor has merits and demerits. for example, accelerometer can easily measure the acceleration but can not measure the velocity and the positional changes
+required. same case is with the other forms of sensors also, such as a gyroscope. Sensor fusion techniques defy and address these limitations by combining input from various sensors. The use
+of multiple sources(hetrogeneous or homogeneous) combined with the data fusion techniques provides several advantages, which can be the noise reduction and decrease in uncertainity and increased
+robustness and the integration of prior knowledge of the percieved signals. Note that as the number of sensors increase, the fusion steps become even more challenging. Some common sensor
+fusion techniques are based on bayesian estimation, kalman filters and particle filtering techniques.
+
+Human Activity : ADL is an abbrevation being used for "Activities for daily life".
+
+Data Source devices in HAR : The first step of an HAR workflow is the identification of the data source and the sensor/device that is going to be used in the process, small, low cost sensors such
+as gyroscope, accelerometer and magnetometers are very commonly used and are appropriate for HAR based applications. In relation to the direct measurements that a sensor provides, the indirect usage of 
+the measurements like for making other meteric calculations is good too, e.g. energy harvesting of the systems and the recieved signal strength indicator. Smartphones and weables are very important in 
+deciding what they should use as a sensor for collecting data.
+
+Data : The second step of an HAR workflow is to categorize the collected data type. They can be of various types, such as   
+    1. Inertial Sensors Data : 
+        Accelerometer, gyroscope and magnetometer sensors with a maximum of nine degrees of freedom are commercially available at a very low cost. Besides angular velocity and accelerometer are the most
+        common way to categorize human activity. Inertial sensors are widely used in clinical and healthcare applications.
+    2. Physiological sensors Data : 
+        They percieve physiological sensor data, which in contradictiojn with the other sources of emotional knowledge provides an essential advantage. These signals are mostly involuntary and quite insensitive
+        to deception. For example, EEG, ECG, EMG data. 
+    3. Environmental sensors data : 
+        The environmental data covers all the collection of data representing the state of the environment, including temperature, humidity and things like pressure and brightness. However, measuring the status of
+        the environment goes beyond environmental measures. 
+
+Preprocessing and feature extraction : 
+Data sources generate a data pattern that is aligned with the time, i.e. showing the status of the device/sensor over a period of time. But this data has noise in it, so there will be various noise reduction
+phases required which are important such as digital and statistical filters, data normalization and feature extraction. The feature extraction step will explore the time, frequency and the spectral domain. 
+*Time domain features are the most used ones because they are cheapter than the frequency domain features because if the transform from time to the frequency domain.*
+
+Classification Model and Evaluation :
+The third and the fourth step of the HAR workflow included the identification and evaluation of the classification model, being used for activity recognition. Classic machine learning models still use and enjoy greater
+popularity in the scale of the more advanced Deep Learning Models. Many articles used more than one model for classification as they use the accuracy as a comparison metric in between the various articles. 
+
+    1. Deep learning based methodologies:
+        The most popular model was the convolutional neural network with references in many papers. 
+    2. Machine Learning based methodologies:
+        Among the various types of classical Machine Learning Models, the most common one was the support vector machines model. The second close to it was the k-nearest neighbor model. 
+
+The lack of public heterogenous datasets reduces the possibility of creating HAR models with better generalization capabilities. This is because the data used in the investigated papers were collected primarily in an
+controlled environment. There have been various methodologies, such as testing with multiple datasets and multiple models but seems like we can't identify a methodology superior to the other in this case. Another 
+significant issue concerns the interpretability of the results, mainly related to papers preseting similar methodologies being tested on the same dataset. Classic machine learning models are till being used more 
+widely than their deep learning counterparts because they require a smaller amount of training data, as well as lower computational requirements. 
+
+The main limitation of HAR is the lack of standardized methodologies that can generalize to heterogenous set of activities that could be performed by a diverse set of users. Merging different sensors to make sensor fusion
+also shows a good path for it. 
+
+
+Paper 2 : Indoor Localization and navigation using smartphone sensory data.
+The paper used gyroscope and accelerometer for building the system. Pedestrian Dead Reckoning (PDR) approach is used to build this system. PDR is simple and efficient, though seems traditonal. A major weakness of the PDR 
+process is that the estimation error would accumulate over time. Thus the paper adds a calibration marks which look like small short arrows and are places on the ground and as well as the floor plan. 
+Indoor navigation system can be very helpful for the people who are stuck in an unfamiliar place. GPS, global positioning system is usually used to decide the location of the user in an outdoor navigation system.
+But, using GPS is not  agood option as the satellites can not track the signals inside a house. Majority if the technologies developed for an indoor housing environment is based upon WiFi or RFID, which is based 
+upon using the various sensors of the smartphone. These are very costly and troublesome if not possible. 
+
+Accelerometer and gyroscope were used as the major sensors in the research. Accelerometer is used to estimate the distance that smartphone moves. Gyroscope senses the angular velocities when the smartphone rotates
+about the three axes. Pressure sensors can be deployed on the floor to detect the location of the user, and the WiFi signal strength can also be used. The PDR approach requires no sensor deployment in the environment.
+Thus, it makes for an ease-of-use approach with low cost. Pedometer calculates the steps a user walked. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
