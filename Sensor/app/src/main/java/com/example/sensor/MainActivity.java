@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.io.File;
 
 import android.os.Bundle;
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onResume() {
         super.onResume();
-        // Listenerの登録
+        // Listener
         Sensor acc = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         Sensor gyro = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         Sensor mag = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
-    // 解除するコードも入れる!
+    // enter the code to unlock!
     @Override
     protected void onPause() {
         super.onPause();
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        //Log.d("debug","onSensorChanged");
+//        Log.d("debug","onSensorChanged");
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             sensorX_acc = event.values[0];
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             sensorY_gyro = event.values[1];
             sensorZ_gyro = event.values[2];
 
-            String strTmp_gyro = String.format(Locale.US, "GYROSCOPE\n " +
+            String strTmp_gyro = String.format(Locale.US, "Gyroscope\n " +
                     " X: %f\n Y: %f\n Z: %f",sensorX_gyro, sensorY_gyro, sensorZ_gyro);
             textView_gyro.setText(strTmp_gyro);
 
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             sensorY_mag = event.values[1];
             sensorZ_mag = event.values[2];
 
-            String strTmp_mag = String.format(Locale.US, "MagneticField\n " +
+            String strTmp_mag = String.format(Locale.US, "Magnetic Field\n " +
                     " X: %f\n Y: %f\n Z: %f",sensorX_mag, sensorY_mag, sensorZ_mag);
             textView_mag.setText(strTmp_mag);
 
@@ -166,19 +167,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
            String str_mag;
            String filePath;
            String sdf1;
-           if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-               filePath = Environment.getExternalStorageDirectory().toString();
-               Log.d("hoge", filePath);
-           }else{
-               filePath = Environment.getDataDirectory().toString();
+
+           File file = new File(this.getExternalFilesDir(null) + "/Notes");
+           if(!file.exists()){
+               file.mkdirs();
            }
+           filePath = String.valueOf(file);
+
 
            sdf1 = getTimelocal();
-           //acc書き込み
+           // writing the accuracy values.
            try {
-               //Log.i("FILE_PATH",LOCAL_FILE);//ファイル出力場所はこれで確認
-               FileOutputStream fos = new FileOutputStream(filePath + fileName_acc,true);//trueは追記モード
-               OutputStreamWriter osw = new OutputStreamWriter(fos,"Shift-JIS");//Excelの仕様上Shift-JISが良い
+                //Log.i("FILE_PATH", LOCAL_FILE);// check the output file location with this.
+               //create a directory, filepath+filenameacc.txt
+               FileOutputStream fos = new FileOutputStream(filePath + fileName_acc, true);//true ; add more
+               OutputStreamWriter osw = new OutputStreamWriter(fos,"Shift-JIS");//Excel SHIFT_JIS is good.
                BufferedWriter bw = new BufferedWriter(osw);
                str_acc = sensorX_acc + "," + sensorY_acc + "," + sensorZ_acc;
                bw.write(sdf1 +"," + str_acc+"\n");
@@ -190,8 +193,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
            }
            //gyro
            try {
-               FileOutputStream fos = new FileOutputStream(filePath + fileName_gyro,true);//trueは追記モード
-               OutputStreamWriter osw = new OutputStreamWriter(fos,"Shift-JIS");//Excelの仕様上Shift-JISが良い
+               FileOutputStream fos = new FileOutputStream(filePath + fileName_gyro,true);//true ; add mode
+               OutputStreamWriter osw = new OutputStreamWriter(fos,"Shift-JIS");//Excel ; SHIFT JIS is a good mode.
                BufferedWriter bw = new BufferedWriter(osw);
                str_gyro = sensorX_gyro + "," + sensorY_gyro + "," + sensorZ_gyro;
                bw.write(sdf1 +"," + str_gyro+"\n");
@@ -203,8 +206,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
            }
            //mag
            try {
-               FileOutputStream fos = new FileOutputStream(filePath + fileName_mag,true);//trueは追記モード
-               OutputStreamWriter osw = new OutputStreamWriter(fos,"Shift-JIS");//Excelの仕様上Shift-JISが良い
+               FileOutputStream fos = new FileOutputStream(filePath + fileName_mag,true);//true
+               OutputStreamWriter osw = new OutputStreamWriter(fos,"Shift-JIS");//Excel
                BufferedWriter bw = new BufferedWriter(osw);
                str_mag = sensorX_mag + "," + sensorY_mag + "," + sensorZ_mag;
                bw.write(sdf1 +"," + str_mag+"\n");
@@ -227,36 +230,36 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    // センサーの各種情報を表示する
+    // display various information of the sensor
     private void showInfo(SensorEvent event){
-        // センサー名
+        // Sensor Name
         StringBuffer info = new StringBuffer("Name: ");
         info.append(event.sensor.getName());
         info.append("\n");
 
-        // ベンダー名
+        // Vendor Name
         info.append("Vendor: ");
         info.append(event.sensor.getVendor());
         info.append("\n");
 
-        // 型番
+        // Model Number
         info.append("Type: ");
         info.append(event.sensor.getType());
         info.append("\n");
 
-        // 最小遅れ
+        // the minimum delay
         int data = event.sensor.getMinDelay();
         info.append("Mindelay: ");
         info.append(String.valueOf(data));
         info.append(" usec\n");
 
-        // 最大遅れ
+        // maximum delay
         data = event.sensor.getMaxDelay();
         info.append("Maxdelay: ");
         info.append(String.valueOf(data));
         info.append(" usec\n");
 
-        // レポートモード
+        // Report Mode
         data = event.sensor.getReportingMode();
         String stinfo = "unknown";
         if(data == 0){
@@ -270,19 +273,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         info.append(stinfo);
         info.append("\n");
 
-        // 最大レンジ
+        // Maximum Range
         info.append("MaxRange: ");
         float fData = event.sensor.getMaximumRange();
         info.append(String.valueOf(fData));
         info.append("\n");
 
-        // 分解能
+        // Resolution
         info.append("Resolution: ");
         fData = event.sensor.getResolution();
         info.append(String.valueOf(fData));
         info.append(" m/s^2\n");
 
-        // 消費電流
+        // Power
         info.append("Power: ");
         fData = event.sensor.getPower();
         info.append(String.valueOf(fData));
@@ -290,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //textInfo.setText(info);
     }
-    //log出力用時間計測関数
+    //log The time measurement output.
     public static String getTimelocal(){
         java.text.DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSS", Locale.US);//EXCELで編集しやすいようにこのフォーマット
         df.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
